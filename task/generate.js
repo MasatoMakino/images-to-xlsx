@@ -46,34 +46,30 @@ const limitSize = size => {
   return resize;
 };
 
-async function setImage(filePath, size, rowIndex) {
+/**
+ * 指定されたパスの画像を指定サイズにリサイズする。
+ * @param filePath
+ * @param size
+ * @return {Promise<any>}
+ */
+function getResizeImageBuffer(filePath, size) {
   return new Promise((resolve, reject) => {
-    let resize = limitSize(size);
-    resizeCell(sheet, resize, rowIndex);
-
     sharp(filePath)
-      .resize(resize.width, resize.height)
+      .resize(size.width, size.height)
       .toBuffer()
       .then(data => {
-        sheet.addImage({
-          image: data,
-          type: "picture",
-          position: {
-            type: "oneCellAnchor",
-            from: {
-              col: 3,
-              // colOff: 1,
-              row: rowIndex
-              // rowOff: 1
-            }
-          }
-        });
-        resolve();
+        resolve(data);
       });
   });
 }
 
 let maxW = 0;
+/**
+ * セルのサイズを調整する。
+ * @param sheet
+ * @param size
+ * @param rowIndex
+ */
 const resizeCell = (sheet, size, rowIndex) => {
   sheet.row(rowIndex).setHeight(size.height * SCALE_H);
   if (maxW < size.width) {
@@ -82,6 +78,39 @@ const resizeCell = (sheet, size, rowIndex) => {
   }
 };
 
+/**
+ * セルに画像を埋め込む。
+ * @param filePath
+ * @param size
+ * @param rowIndex
+ * @return {Promise<void>}
+ */
+async function setImage(filePath, size, rowIndex) {
+  let resize = limitSize(size);
+  resizeCell(sheet, resize, rowIndex);
+
+  const buffer = await getResizeImageBuffer(filePath, resize);
+  sheet.addImage({
+    image: buffer,
+    type: "picture",
+    position: {
+      type: "oneCellAnchor",
+      from: {
+        col: 3,
+        // colOff: 1,
+        row: rowIndex
+        // rowOff: 1
+      }
+    }
+  });
+}
+
+/**
+ * rowの書き込みを行う。
+ * @param imgPath
+ * @param index
+ * @return {Promise<void>}
+ */
 async function writeLine(imgPath, index) {
   const filePath = path.resolve(imgDir, imgPath);
   const size = sizeof(filePath);
