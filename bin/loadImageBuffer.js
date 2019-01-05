@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+"use strict";
+
 const sharp = require("sharp");
 
 /**

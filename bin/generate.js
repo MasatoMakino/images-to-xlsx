@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+"use strict";
+
 const path = require("path");
 const glob = require("glob");
 const xl = require("excel4node");

@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+"use strict";
+
 /**
  * 画像の縦横サイズを制限する。
  * @param size
