@@ -112,6 +112,4 @@ function generate(imgDir, output) {
     });
 }
 
-generate("./images", "./dist/images.xlsx");
-
 module.exports = generate;

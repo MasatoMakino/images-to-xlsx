@@ -2,11 +2,14 @@
   "name": "images-to-xlsx",
   "version": "0.0.1",
   "description": "Generator for xlsx image list",
-  "main": "index.js",
+  "bin": {
+    "images-to-xlsx": "./bin/index.js"
+  },
   "repository": "https://MasatoMakino@github.com/MasatoMakino/images-to-xlsx.git",
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.19.0",
     "excel4node": "^1.7.0",
     "glob": "^7.1.3",
     "image-size": "^0.6.3",
@@ -15,7 +18,8 @@
     "sharp": "^0.21.1"
   },
   "scripts": {
-    "dist": "node ./bin/generate.js"
+    "test": "node ./bin/index.js -i ./images -o ./img.xlsx",
+    "testHelp": " node ./bin/index.js -h"
   },
   "devDependencies": {
     "husky": "^1.3.1",
