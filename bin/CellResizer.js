@@ -18,10 +18,12 @@ class CellResizer {
     this.maxWidth = 0;
     this.margin = margin;
 
-    //TODO スケーリング定数 なぜこの値になるのか不明。要調査。
+    //スケーリング定数 px -> pt
     this.SCALE_H = 0.75;
     this.SCALE_W = 0.125;
-    this.SCALE_TO_MM = 0.25;
+    //スケーリング定数 px -> mm
+    this.SCALE_TO_MM = 0.26458;
+    //TODO このスケーリング定数はdpi設定によって変化する。
   }
 
   /**
