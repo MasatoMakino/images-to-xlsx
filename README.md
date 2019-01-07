@@ -7,15 +7,18 @@
 ### Install
 
 ```bash
-npm install https://github.com/MasatoMakino/images-to-xlsx.git --save-dev
+npm install https://github.com/MasatoMakino/images-to-xlsx.git
 ```
 
 ### Run
 
-```bash
-npm run images-to-xlsx -i ./images
+```package.json
+"scripts": {
+  "list":"images-to-xlsx -i ./images"
+},
 ```
-load images in directory ``./images`` and output ``./images.xlsx``
+
+load images in directory `./images` and output `./images.xlsx`
 
 ### Options
 
@@ -27,7 +30,7 @@ image directory.
 
 output file path.
 
-default : ``./images.xlsx``
+default : `./images.xlsx`
 
 ##### -h
 
