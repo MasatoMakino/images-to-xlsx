@@ -1,6 +1,6 @@
 {
   "name": "images-to-xlsx",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generator for xlsx image list",
   "bin": {
     "images-to-xlsx": "./bin/index.js"
