@@ -9,13 +9,13 @@
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^5.1.0",
+    "commander": "^6.1.0",
     "excel4node": "^1.7.2",
     "glob": "^7.1.6",
     "image-size": "^0.8.3",
     "make-dir": "^3.1.0",
     "onchange": "^7.0.2",
-    "sharp": "^0.25.2"
+    "sharp": "^0.26.0"
   },
   "scripts": {
     "run": "node ./bin/index.js -i ./images -o ./img.xlsx",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "husky": "^4.2.5",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1"
+    "prettier": "^2.1.1",
+    "pretty-quick": "^3.0.0"
   }
 }
