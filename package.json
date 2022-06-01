@@ -15,7 +15,7 @@
     "image-size": "^0.8.3",
     "make-dir": "^3.1.0",
     "onchange": "^7.0.2",
-    "sharp": "^0.26.0"
+    "sharp": "^0.30.5"
   },
   "scripts": {
     "run": "node ./bin/index.js -i ./images -o ./img.xlsx",
