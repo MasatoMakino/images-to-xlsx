@@ -6,7 +6,7 @@ const program = require("commander");
 
 program
   .requiredOption("-i, --input <inputPath>", "image directory", String)
-  .requiredOption("-o, --output <outputPath>", "output file path", String, "./images.xlsx")
+  .option("-o, --output <outputPath>", "output file path", String, "./images.xlsx")
   .parse();
 
 const options = program.opts();
