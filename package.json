@@ -13,7 +13,7 @@
     "excel4node": "^1.8.0",
     "glob": "^8.0.3",
     "image-size": "^1.0.2",
-    "make-dir": "^3.1.0",
+    "make-dir": "^4.0.0",
     "onchange": "^7.1.0",
     "sharp": "^0.31.0"
   },
