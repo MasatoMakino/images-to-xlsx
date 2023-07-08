@@ -9,21 +9,21 @@
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^9.4.0",
-    "excel4node": "^1.8.0",
-    "glob": "^8.0.3",
+    "commander": "^11.0.0",
+    "excel4node": "^1.8.2",
+    "glob": "^10.3.2",
     "image-size": "^1.0.2",
-    "make-dir": "^3.1.0",
+    "make-dir": "^4.0.0",
     "onchange": "^7.1.0",
-    "sharp": "^0.31.0"
+    "sharp": "^0.32.1"
   },
   "scripts": {
     "run": "node ./bin/index.js -i './images' -o './dist/img.xlsx'",
     "runHelp": " node ./bin/index.js -h"
   },
   "devDependencies": {
-    "husky": "^8.0.1",
-    "prettier": "^2.7.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.8",
     "pretty-quick": "^3.1.3"
   }
 }
