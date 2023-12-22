@@ -23,15 +23,16 @@
     "onchange": "^7.1.0",
     "sharp": "^0.33.1"
   },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1"
+  },
   "scripts": {
     "test": "node --test",
     "run": "node ./bin/index.js -i './images' -o './dist/img.xlsx'",
-    "runHelp": " node ./bin/index.js -h"
-  },
-  "devDependencies": {
-    "husky": "^8.0.3",
-    "prettier": "^2.8.8",
-    "pretty-quick": "^3.1.3"
+    "runHelp": " node ./bin/index.js -h",
+    "prepare": "husky install"
   },
   "bugs": {
     "url": "https://github.com/MasatoMakino/images-to-xlsx/issues"
@@ -39,5 +40,8 @@
   "homepage": "https://github.com/MasatoMakino/images-to-xlsx#readme",
   "directories": {
     "test": "test"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
