@@ -9,6 +9,7 @@ const loadImageBuffer = require("./loadImageBuffer");
 const limitSize = require("./limitImageSize");
 const CellResizer = require("./CellResizer");
 const makeDir = require("make-dir");
+const fs = require("fs");
 
 let resizer;
 
@@ -17,9 +18,9 @@ let resizer;
  * @param imgDir
  * @return {*}
  */
-const getImageList = imgDir => {
+const getImageList = (imgDir) => {
   return glob.sync("**/*.+(jpg|jpeg|gif|png|JPG|JPEG|GIF|PNG)", {
-    cwd: imgDir
+    cwd: imgDir,
   });
 };
 
@@ -27,7 +28,7 @@ const getImageList = imgDir => {
  * 指定されたシートの一行目にヘッダーを書き込む
  * @param sheet
  */
-const initHeader = sheet => {
+const initHeader = (sheet) => {
   const headers = ["Path", "FileName", "image", "width", "height"];
   headers.forEach((message, index) => {
     sheet.cell(1, index + 1).string(message);
@@ -56,9 +57,9 @@ async function setImage(sheet, filePath, size, rowIndex) {
         col: resizer.columnIndex,
         colOff: resizer.getMarginMM(),
         row: rowIndex,
-        rowOff: resizer.getMarginMM()
-      }
-    }
+        rowOff: resizer.getMarginMM(),
+      },
+    },
   });
 }
 
@@ -89,6 +90,18 @@ async function writeLine(sheet, imgDir, imgPath, index) {
  * @param output 出力するxlsxファイルのパス
  */
 function generate(imgDir, output) {
+  // imgDirがundefinedまたはnullの場合のチェック
+  if (!imgDir) {
+    throw new Error(
+      "The -i option is required. Please specify the input directory with the -i option."
+    );
+  }
+
+  // 入力ディレクトリの存在チェック
+  if (!fs.existsSync(imgDir)) {
+    throw new Error(`Input directory does not exist: ${imgDir}`);
+  }
+
   const workbook = new xl.Workbook();
   const sheet = workbook.addWorksheet("Sheet 1");
 
