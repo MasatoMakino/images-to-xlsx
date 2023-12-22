@@ -3,6 +3,7 @@
 
 const path = require("path");
 const glob = require("glob");
+const sharp = require("sharp");
 const xl = require("excel4node");
 const { loadImageBuffer, getImageMetadata } = require("./loadImageBuffer");
 const limitSize = require("./limitImageSize");
@@ -37,16 +38,16 @@ const initHeader = (sheet) => {
 /**
  * セルに画像を埋め込む。
  * @param sheet
- * @param filePath 画像ファイルパス
+ * @param {sharp.Sharp} sharpObj 画像オブジェクト
  * @param size 画像ファイルの縦横サイズ　単位ピクセル
  * @param rowIndex
  * @return {Promise<void>}
  */
-async function setImage(sheet, filePath, size, rowIndex) {
+async function setImage(sheet, sharpObj, size, rowIndex) {
   const resize = limitSize(size, { width: 280 });
   resizer.resize(resize, rowIndex);
 
-  const buffer = await loadImageBuffer(filePath, resize);
+  const buffer = await loadImageBuffer(sharpObj, resize);
   sheet.addImage({
     image: buffer,
     type: "picture",
@@ -72,7 +73,8 @@ async function setImage(sheet, filePath, size, rowIndex) {
  */
 async function writeLine(sheet, imgDir, imgPath, index) {
   const filePath = path.resolve(imgDir, imgPath);
-  const metadata = await getImageMetadata(filePath);
+  const sharpObj = sharp(filePath);
+  const metadata = await getImageMetadata(sharpObj);
   const filename = path.basename(imgPath);
 
   const rowIndex = index + 2;
@@ -80,7 +82,7 @@ async function writeLine(sheet, imgDir, imgPath, index) {
   sheet.cell(rowIndex, 2).string(filename);
   sheet.cell(rowIndex, 4).number(metadata.width);
   sheet.cell(rowIndex, 5).number(metadata.height);
-  await setImage(sheet, filePath, metadata, rowIndex);
+  await setImage(sheet, sharpObj, metadata, rowIndex);
 }
 
 /**

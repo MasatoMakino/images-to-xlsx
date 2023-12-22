@@ -3,15 +3,15 @@
 
 /**
  * 画像の縦横サイズを制限する。
- * @param size
- * @param size.width
- * @param size.height
+ * @param {Object} size
+ * @param {number} size.width
+ * @param {number} size.height
  * @param [max]
  * @param [max.width]
  * @param [max.height = 320]
- * @return {*} resize
- * @return resize.width
- * @return resize.height
+ * @return {Object} resize
+ * @return {number} resize.width
+ * @return {number} resize.height
  */
 function limit(size, max) {
   if (max == null) {
