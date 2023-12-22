@@ -1,5 +1,7 @@
 # images-to-xlsx
 
+[![CI](https://github.com/MasatoMakino/images-to-xlsx/actions/workflows/CI.yml/badge.svg)](https://github.com/MasatoMakino/images-to-xlsx/actions/workflows/CI.yml)
+
 .xlsx image list generator.
 
 ## Getting Started
