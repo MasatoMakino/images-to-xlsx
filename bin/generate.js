@@ -8,8 +8,8 @@ const sizeof = require("image-size");
 const loadImageBuffer = require("./loadImageBuffer");
 const limitSize = require("./limitImageSize");
 const CellResizer = require("./CellResizer");
-const makeDir = require("make-dir");
 const fs = require("fs");
+const fsPromises = fs.promises;
 
 let resizer;
 
@@ -93,7 +93,7 @@ function generate(imgDir, output) {
   // imgDirがundefinedまたはnullの場合のチェック
   if (!imgDir) {
     throw new Error(
-      "The -i option is required. Please specify the input directory with the -i option."
+      "The -i option is required. Please specify the input directory with the -i option.",
     );
   }
 
@@ -118,7 +118,7 @@ function generate(imgDir, output) {
 
   Promise.all(promises)
     .then(() => {
-      return makeDir(path.dirname(output));
+      return fsPromises.mkdir(path.dirname(output), { recursive: true });
     })
     .then(() => {
       workbook.write(output);
