@@ -11,15 +11,28 @@ const sharp = require("sharp");
  * @param {number} size.height
  * @return {Promise<any>}
  */
-function load(path, size) {
+exports.loadImageBuffer = function (path, size) {
   return new Promise((resolve, reject) => {
     sharp(path)
       .resize(size.width, size.height)
       .toBuffer()
-      .then(data => {
+      .then((data) => {
         resolve(data);
       });
   });
-}
+};
 
-module.exports = load;
+/**
+ * 画像のメタデータを読み込む。
+ * @param {string} path
+ * @returns {Promise<sharp.Metadata>}
+ */
+exports.getImageMetadata = function (path) {
+  return new Promise((resolve, reject) => {
+    sharp(path)
+      .metadata()
+      .then((metadata) => {
+        resolve(metadata);
+      });
+  });
+};

@@ -4,8 +4,7 @@
 const path = require("path");
 const glob = require("glob");
 const xl = require("excel4node");
-const sizeof = require("image-size");
-const loadImageBuffer = require("./loadImageBuffer");
+const { loadImageBuffer, getImageMetadata } = require("./loadImageBuffer");
 const limitSize = require("./limitImageSize");
 const CellResizer = require("./CellResizer");
 const fs = require("fs");
@@ -73,15 +72,15 @@ async function setImage(sheet, filePath, size, rowIndex) {
  */
 async function writeLine(sheet, imgDir, imgPath, index) {
   const filePath = path.resolve(imgDir, imgPath);
-  const size = sizeof(filePath);
+  const metadata = await getImageMetadata(filePath);
   const filename = path.basename(imgPath);
 
   const rowIndex = index + 2;
   sheet.cell(rowIndex, 1).string(imgPath);
   sheet.cell(rowIndex, 2).string(filename);
-  sheet.cell(rowIndex, 4).number(size.width);
-  sheet.cell(rowIndex, 5).number(size.height);
-  await setImage(sheet, filePath, size, rowIndex);
+  sheet.cell(rowIndex, 4).number(metadata.width);
+  sheet.cell(rowIndex, 5).number(metadata.height);
+  await setImage(sheet, filePath, metadata, rowIndex);
 }
 
 /**
