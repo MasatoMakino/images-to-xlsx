@@ -22,7 +22,7 @@
     "sharp": "^0.33.2"
   },
   "devDependencies": {
-    "husky": "^8.0.3",
+    "husky": "^9.0.10",
     "lint-staged": "^15.2.1",
     "prettier": "^3.2.4"
   },
@@ -30,7 +30,7 @@
     "test": "node --test",
     "run": "node ./bin/index.js -i './images' -o './dist/img.xlsx'",
     "runHelp": " node ./bin/index.js -h",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "bugs": {
     "url": "https://github.com/MasatoMakino/images-to-xlsx/issues"
