@@ -1,6 +1,6 @@
 {
   "name": "@masatomakino/images-to-xlsx",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generator for xlsx image list",
   "files": [
     "bin"
