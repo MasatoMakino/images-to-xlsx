@@ -15,7 +15,7 @@
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^13.1.0",
+    "commander": "^14.0.0",
     "excel4node": "^1.8.2",
     "glob": "^11.0.2",
     "onchange": "^7.1.0",
